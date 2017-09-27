@@ -2,9 +2,10 @@
 
 class Player < Sprite
   def init
-    @score = 0
-    @@life = 3
+    @life = 3
+    @k_flag = false
   end
+
   def update
     self.x += Input.x * 1.5
     # Playerは画面内にとどまる
@@ -25,16 +26,10 @@ class Player < Sprite
 
   # 他のオブジェクトと衝突した際に呼ばれるメソッド
   def shot(obj)
-    @score += 1
-    @@life -= 1
-  end
-  
-  def show
-    font = Font.new(32)
-    Window.draw_font(0, 0, "score:#{@score}", font)
+    @life -= 1
   end
 
   def showlife
-    @@life
+    @life
   end
 end

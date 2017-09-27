@@ -1,9 +1,9 @@
 # coding: utf-8
 require 'dxruby'
 
+require_relative 'arm'
 require_relative 'player'
 require_relative 'enemy'
-require_relative 'arm'
 
 font = Font.new(32)
 
@@ -23,6 +23,8 @@ player = Player.new(400, 500, player_img)
 player.init
 
 enemies = []
+bullets = []
+Arm.init
 
 count = 25
 at_count = false
@@ -44,20 +46,29 @@ Window.loop do
   Sprite.update(enemies)
   Sprite.draw(enemies)
 
-  player.show
   player.update
   player.draw
-  
-  if Input.key_push?(K_ESCAPE)
-  
-  
+
+  if Input.key_push?(K_SPACE)
+    bullets << Arm.new(player.x, player.y, bu_img)
+    Arm.set
   end
-  
+
+  if Arm.ref
+    Sprite.update(bullets)
+    Sprite.draw(bullets)
+  end
+
   # 当たり判定
   Sprite.check(player, enemies)
+  if Arm.ref
+    Sprite.check(bullets, enemies)
+  end
 
+  score = Arm.score
   life = player.showlife
-  Window.draw_font(730, 0, "life:#{life}", font)
+  Window.draw_font(0, 0, "Score:#{score}", font)
+  Window.draw_font(720, 0, "Life:#{life}", font)
   if life < 0
     break
   end
@@ -66,5 +77,5 @@ end
 Window.loop do
   break if Input.keyPush?(K_ESCAPE)
 
-  Window.draw_font(200, 200, "GAMEOVER:Push escape", font)
+  Window.draw_font(200, 200, "GAME FINISH:Push escape", font)
 end
