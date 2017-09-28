@@ -1,23 +1,6 @@
 # coding: utf-8
 
 class Arm < Sprite
-  def self.init
-    @a_flag = false
-    @@score = 0
-  end
-
-  def self.set
-    @a_flag = true
-  end
-
-  def self.ref
-    @a_flag
-  end
-
-  def self.score
-    @@score
-  end
-
   def update
     self.y -= 2
       if self.y <= 0
@@ -33,9 +16,14 @@ class Arm < Sprite
     @a_flag
   end
 
+  # アイテムと衝突した際に呼ばれるメソッド
+  def eneen(obj)
+    $score += 1
+    self.vanish
+  end
+
   # 他のオブジェクトと衝突した際に呼ばれるメソッド
-  def shot(obj)
-    @@score += 1
+  def normal(obj)
     self.vanish
   end
 end

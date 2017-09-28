@@ -34,6 +34,7 @@ class Player < Sprite
   # 加速アイテムを取得時に呼ばれるメソッド
   def upspeed
     @speed += 0.5
+    $score += 1
   end
 
   # 減速アイテムを取得時に呼ばれるメソッド
@@ -41,6 +42,19 @@ class Player < Sprite
     @speed -= 0.5
     if @speed <= 0
       @speed = 1.0
+    end
+  end
+
+  # 加点アイテムを取得時に呼ばれるメソッド
+  def upscore
+    $score += 5
+  end
+
+  # 減点アイテムを取得時に呼ばれるメソッド
+  def downscore
+    $score -= 5
+    if $score <= 0
+      $score = 0
     end
   end
 
