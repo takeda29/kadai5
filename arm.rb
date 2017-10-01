@@ -8,14 +8,14 @@ class Arm < Sprite
       end
   end
 
-  # アイテムと衝突した際に呼ばれるメソッド
+  # 敵と衝突した際に呼ばれるメソッド
   def eneen(obj)
     $score += 1
     self.vanish
   end
 
   # 他のオブジェクトと衝突した際に呼ばれるメソッド
-  def normal(obj)
+  def shot(obj)
     self.vanish
   end
 end

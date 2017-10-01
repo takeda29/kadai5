@@ -146,12 +146,12 @@ Window.loop do
   Sprite.check(player, dscore_items, :downscore)
   Sprite.check(bullets, enemies, :eneen)
   Sprite.check(laser, enemies, :eneen)
-  Sprite.check(bullets, dspeed_items, :normal)
-  Sprite.check(bullets, dscore_items, :normal)
-  Sprite.check(laser, dspeed_items, :normal)
-  Sprite.check(laser, dscore_items, :normal)
-  Sprite.check(laser, uspeed_items, :normal)
-  Sprite.check(laser, uscore_items, :normal)
+  Sprite.check(bullets, dspeed_items)
+  Sprite.check(bullets, dscore_items)
+  Sprite.check(laser, dspeed_items)
+  Sprite.check(laser, dscore_items)
+  Sprite.check(laser, uspeed_items)
+  Sprite.check(laser, uscore_items)
 
   # ステータス表示
   life = player.showlife
